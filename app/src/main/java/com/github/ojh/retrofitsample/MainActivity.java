@@ -4,6 +4,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.text.Html;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,10 +97,11 @@ public class MainActivity extends AppCompatActivity {
         @Override
         public void onBindViewHolder(RecyclerView.ViewHolder holder, int position) {
 
-            ((MyViewHolder)holder).textView.setText(items.get(position).title);
+            ((MyViewHolder)holder).textView.setText(Html.fromHtml(Html.fromHtml(items.get(position).title).toString()).toString());
 
             Glide.with(MyApplication.getContext())
                     .load(items.get(position).thumbnail)
+                    .centerCrop()
                     .into(((MyViewHolder)holder).imageView);
         }
 
